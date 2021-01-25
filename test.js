@@ -9,7 +9,7 @@ const Uploader = require('./index.js')
 const destDir = __dirname + '/dist'
 
 const s3 = Uploader.S3({
-  bucket: 'test.ioa.tw',
+  bucket: '',
   access: '',
   secret: '',
 

@@ -23,5 +23,9 @@
   "bugs": {
     "url": "https://github.com/comdan66/node-Uploader/issues"
   },
-  "homepage": "https://github.com/comdan66/node-Uploader#readme"
+  "homepage": "https://github.com/comdan66/node-Uploader#readme",
+  "dependencies": {
+    "@oawu/cli-progress": "^1.0.9",
+    "@oawu/xterm": "^1.0.4"
+  }
 }
