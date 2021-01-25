@@ -1,6 +1,6 @@
 {
   "name": "@oawu/uploader",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "☁️ 上傳無上限，不管是 S3 或 GitHub",
   "main": "index.js",
   "scripts": {
