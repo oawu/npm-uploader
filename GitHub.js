@@ -9,8 +9,9 @@ const Path       = require('path')
 const FileSystem = require('fs')
 const Progress   = require('@oawu/cli-progress')
 const Helper     = require('./Helper')
-const Typeof     = require('./Typeof')
 const Upload     = require('./Upload')
+
+const { Typeof } = Helper
 
 const GitHub = function(option) {
   if (this instanceof GitHub) return this

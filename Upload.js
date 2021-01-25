@@ -7,7 +7,8 @@
 
 const Path   = require('path')
 const Helper = require('./Helper')
-const Typeof = require('./Typeof')
+
+const { Typeof } = Helper
 
 const Upload = {
   instances: {

@@ -6,7 +6,7 @@
  */
 
 const Uploader = require('./index.js')
-const destDir = '/Users/oa/www/node-upload-s3/dist'
+const destDir = __dirname + '/dist'
 
 const s3 = Uploader.S3({
   bucket: 'test.ioa.tw',
