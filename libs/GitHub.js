@@ -8,7 +8,7 @@
 const Path       = require('path')
 const FileSystem = require('fs')
 const Progress   = require('@oawu/cli-progress')
-const Helper     = require('./Helper')
+const Helper     = require('@oawu/helper')
 const Upload     = require('./Upload')
 
 const { Typeof } = Helper

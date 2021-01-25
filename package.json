@@ -14,6 +14,7 @@
     "Uploader",
     "GitHub",
     "GitHub Pages",
+    "gh-pages",
     "S3",
     "AWS S3",
     "Static file"
@@ -30,6 +31,8 @@
   "homepage": "https://github.com/comdan66/node-Uploader#readme",
   "dependencies": {
     "@oawu/cli-progress": "^1.0.9",
+    "@oawu/helper": "^1.0.1",
+    "@oawu/queue": "^1.0.10",
     "@oawu/xterm": "^1.0.4",
     "aws-sdk": "^2.831.0",
     "mime": "^2.5.0"

@@ -6,7 +6,7 @@
  */
 
 const Path   = require('path')
-const Helper = require('./Helper')
+const Helper = require('@oawu/helper')
 
 const { Typeof } = Helper
 

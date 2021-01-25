@@ -9,6 +9,6 @@ require('@oawu/xterm').stringPrototype()
 require('@oawu/cli-progress').option.color = true
 
 module.exports = {
-  S3: require('./S3'),
-  GitHub: require('./GitHub'),
+  S3: require('./libs/S3'),
+  GitHub: require('./libs/GitHub'),
 }
