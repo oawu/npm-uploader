@@ -42,8 +42,7 @@ const Upload = {
       file => !names.includes(file.name)
            && !exts.includes(file.ext)
            && !dirs.map(dir => this.destDir + dir)
-                   .filter(d => Helper.isSubStr(d, file.dir)).length)
+                   .filter(d => Helper.isSub(d, file.dir)).length)
 }
 
 module.exports = Upload
-
