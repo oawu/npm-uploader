@@ -1,0 +1,26 @@
+{
+  "name": "uploader",
+  "version": "1.0.0",
+  "description": "☁️ 上傳無上限，不管是 S3 或 GitHub",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/comdan66/node-Uploader.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/comdan66/node-Uploader/issues"
+  },
+  "homepage": "https://github.com/comdan66/node-Uploader#readme",
+  "dependencies": {
+    "@oawu/cli-progress": "^1.0.8",
+    "@oawu/queue": "^1.0.10",
+    "@oawu/xterm": "^1.0.4",
+    "aws-sdk": "^2.830.0",
+    "mime": "^2.5.0"
+  }
+}
