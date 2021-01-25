@@ -26,6 +26,8 @@
   "homepage": "https://github.com/comdan66/node-Uploader#readme",
   "dependencies": {
     "@oawu/cli-progress": "^1.0.9",
-    "@oawu/xterm": "^1.0.4"
+    "@oawu/xterm": "^1.0.4",
+    "aws-sdk": "^2.831.0",
+    "mime": "^2.5.0"
   }
 }
