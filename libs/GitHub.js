@@ -79,7 +79,7 @@ GitHub.prototype.put = function(destDir, prefix, closure) {
     .enqueue((next, folder, files) => title('暫存目錄內初始 Git') && total(1) &&
       Exec('cd ' + folder + ' && git init', error => error
         ? finish(error, fail())
-        : next(folder, done())))
+        : next(folder, files, done())))
 
     .enqueue((next, folder, files) => title('Git 將所有檔案紀錄') && total(1) &&
       files.length
