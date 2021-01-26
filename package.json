@@ -30,7 +30,7 @@
   },
   "homepage": "https://github.com/comdan66/node-Uploader#readme",
   "dependencies": {
-    "@oawu/cli-progress": "^1.0.10",
+    "@oawu/cli-progress": "^1.0.11",
     "@oawu/xterm": "^1.0.5",
     "@oawu/queue": "^1.0.10",
     "@oawu/helper": "^1.0.3",
