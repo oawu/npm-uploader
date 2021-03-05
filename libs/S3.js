@@ -79,7 +79,7 @@ S3.prototype.put = function(destDir, prefix, closure) {
       next(instance, files, files.uploadFiles = files.localFiles.filter(localFile => !files.s3Files.filter(s3File => s3File.Key == localFile.Key && s3File.hash == localFile.hash).length), total(files.uploadFiles.length), done()))
 
     .enqueue((next, instance, files) => title('過濾需刪除的檔案') &&
-      next(instance, files, files.deleteFiles = files.s3Files.filter(s3File => !files.localFiles.filter(localFile => localFile.Key == s3File.Key).length && !this.ignoreDirs.filter(dir => isSub(s3File.Key, dir)).length), total(files.deleteFiles.length), done()))
+      next(instance, files, files.deleteFiles = files.s3Files.filter(s3File => !files.localFiles.filter(localFile => localFile.Key == s3File.Key).length && !this.ignoreDirs.filter(dir => isSub(dir, s3File.Key)).length), total(files.deleteFiles.length), done()))
 
     .enqueue((next, instance, files) => title('將檔案上傳至 S3 ') && total(files.uploadFiles.length) &&
       Promise.all(files.uploadFiles.map(({ Body, Key, ContentType }) => new Promise((resolve, reject) => (Body.on('error', reject), instance.putObject({ ...this.option, Body, Key, ContentType, Bucket: this.bucket }, (error, data) => error ? reject(error) : resolve(advance())))))).then(_ => next(instance, files, done())).catch(error => finish(error, fail())))
