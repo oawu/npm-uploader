@@ -1,6 +1,6 @@
 {
   "name": "@oawu/uploader",
-  "version": "1.0.11",
+  "version": "1.0.12",
   "description": "☁️ 上傳無上限，不管是 S3 或 GitHub",
   "main": "index.js",
   "scripts": {
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/comdan66/node-Uploader.git"
+    "url": "git+https://github.com/oawu/npm-uploader.git"
   },
   "keywords": [
     "Uploader",
@@ -21,19 +21,19 @@
   ],
   "author": {
     "name": "OA Wu",
-    "email": "comdan66@gmail.com",
+    "email": "oawu.tw@gmail.com",
     "url": "https://www.ioa.tw"
   },
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/comdan66/node-Uploader/issues"
+    "url": "https://github.com/oawu/npm-uploader/issues"
   },
-  "homepage": "https://github.com/comdan66/node-Uploader#readme",
+  "homepage": "https://github.com/oawu/npm-uploader#readme",
   "dependencies": {
-    "@oawu/cli-progress": "^1.0.14",
-    "@oawu/xterm": "^1.0.6",
-    "@oawu/queue": "^1.0.10",
-    "@oawu/helper": "^1.0.3",
+    "@oawu/cli-progress": "^1.0.15",
+    "@oawu/xterm": "^1.0.7",
+    "@oawu/queue": "^1.0.11",
+    "@oawu/helper": "^1.0.5",
     "aws-sdk": "^2.831.0",
     "mime": "^2.5.0"
   }
