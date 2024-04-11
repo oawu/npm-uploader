@@ -1,6 +1,6 @@
 /**
  * @author      OA Wu <oawu.tw@gmail.com>
- * @copyright   Copyright (c) 2015 - 2022, @oawu/uploader
+ * @copyright   Copyright (c) 2015 - 2024, @oawu/uploader
  * @license     http://opensource.org/licenses/MIT  MIT License
  * @link        https://www.ioa.tw/
  */
@@ -94,7 +94,7 @@ GitHub.prototype.put = function(destDir, prefix, closure) {
         : next(folder, done())))
 
     .enqueue((next, folder) => title('將 Git 上傳 GitHub') && total(1) &&
-      Exec('cd ' + folder + ' && git push --force git@github.com:' + this.account + '/' + this.repository + '.git master:' + this.branch, error => error
+      Exec('cd ' + folder + ' && git push --force git@github.com:' + this.account + '/' + this.repository + '.git HEAD:' + this.branch, error => error
         ? finish(error, fail())
         : next(folder, done())))
 
