@@ -12,19 +12,29 @@ const s3 = Uploader.S3({
   bucket: '',
   access: '',
   secret: '',
-
+  region: '',
+  
   destDir: destDir,
-
   isDisplay: true,
+  
+  prefix: '',
+  ignoreNames: [],
+  ignoreExts: [],
+  ignoreDirs: []
 })
 
 s3.put(e => {
+  console.error(e);
 
   const s3 = Uploader.GitHub({
     account: '',
     repository: '',
+    branch: '',
+    message: '',
+
     destDir: destDir,
     isDisplay: true,
+    
     prefix: '',
     ignoreNames: [],
     ignoreExts: [],
@@ -35,7 +45,6 @@ s3.put(e => {
     e ? console.error(e) : console.error('ok')
     process.exit()
   })
+
 })
-
-
 

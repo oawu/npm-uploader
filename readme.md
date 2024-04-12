@@ -24,7 +24,8 @@ npm install @oawu/uploader
   const s3 = S3({
     bucket: '',
     access: '',
-    secret: ''
+    secret: '',
+    region: ''
   })
 
   s3.destDir = '/.../dir/'
