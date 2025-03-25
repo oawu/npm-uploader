@@ -11,7 +11,7 @@ const Path = require('path')
 const fs = require('fs/promises')
 
 const exec = require('child_process').exec
-const { Type: T, tryIgnore, closureOrPromise } = require('@oawu/helper')
+const { Type: T, tryFunc, promisify } = require('@oawu/helper')
 const { Step, options: { github }, scanLocal, inDir, checkDirs } = require('./Helper.js')
 
 const _instanceModel = new Map()
@@ -26,7 +26,7 @@ const GitHub = function (destDir, options) {
   return instance
 }
 GitHub.prototype.execute = async function (_step = null, done = null) {
-  return closureOrPromise(done, async _ => {
+  return promisify(done, async _ => {
     if (!T.asyncFunc(_step)) {
       _step = Step
     }
@@ -88,7 +88,7 @@ GitHub.prototype.execute = async function (_step = null, done = null) {
       setter.total(files.length)
 
       await Promise.all(files.map(async ({ src, dist, dirs }) => {
-        const dir = await tryIgnore(checkDirs(tmpDir, dirs))
+        const dir = await tryFunc(checkDirs(tmpDir, dirs))
         if (T.err(dir)) {
           throw new Error(`無法建立目錄「${dirs.join(Path.sep)}」。`, { cause: dir })
         }

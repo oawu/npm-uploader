@@ -8,7 +8,7 @@
 const fs = require('fs/promises')
 const Path = require('path')
 const { ListObjectsV2Command } = require('@aws-sdk/client-s3')
-const { Type: T, tryIgnore } = require('@oawu/helper')
+const { Type: T, tryFunc } = require('@oawu/helper')
 
 const _commonOptions = {
   destDir: {
@@ -19,7 +19,7 @@ const _commonOptions = {
 
       val = Path.normalize(val + Path.sep)
 
-      const access = await tryIgnore(fs.access(val, fs.constants.F_OK))
+      const access = await tryFunc(fs.access(val, fs.constants.F_OK))
       if (T.err(access)) {
         throw new Error(`路徑「${val}」沒有訪問權限`, { cause: access })
       }
@@ -204,7 +204,7 @@ const scanLocal = async (path, recursive) => {
 }
 
 const scanS3 = async (s3Client, options) => {
-  const data = await tryIgnore(s3Client.send(new ListObjectsV2Command(options)))
+  const data = await tryFunc(s3Client.send(new ListObjectsV2Command(options)))
   if (T.err(data)) {
     throw new Error('無法取得 S3 的 Bucket 內容', { cause: data })
   }
@@ -248,11 +248,11 @@ const Step = async (_, func) => {
 }
 
 const checkDir = async (dir, permission) => {
-  if (T.err(await tryIgnore(fs.access(dir)))) {
-    await tryIgnore(fs.mkdir(dir, { recursive: false }))
+  if (T.err(await tryFunc(fs.access(dir)))) {
+    await tryFunc(fs.mkdir(dir, { recursive: false }))
   }
 
-  const access = await tryIgnore(fs.access(dir, permission))
+  const access = await tryFunc(fs.access(dir, permission))
   if (T.err(access)) {
     throw new Error(`路徑「${dir}」沒有訪問權限。`, { cause: access })
   }

@@ -12,7 +12,7 @@ const mime = require('mime-types')
 const { S3Client, ListBucketsCommand, PutObjectCommand, DeleteObjectCommand } = require('@aws-sdk/client-s3')
 const { NodeHttpHandler } = require('@smithy/node-http-handler')
 
-const { Type: T, tryIgnore, closureOrPromise } = require('@oawu/helper')
+const { Type: T, tryFunc, promisify } = require('@oawu/helper')
 const { options: { s3 }, inDir, scanLocal, scanS3, chunkArray, Step } = require('./Helper.js')
 
 const _instanceModel = new Map()
@@ -28,7 +28,7 @@ const S3 = function (destDir, options) {
 }
 
 S3.prototype.execute = function (_step = null, done = null) {
-  return closureOrPromise(done, async _ => {
+  return promisify(done, async _ => {
     if (!T.asyncFunc(_step)) {
       _step = Step
     }
@@ -71,7 +71,7 @@ S3.prototype.execute = function (_step = null, done = null) {
 
     await _step('檢查 Bucket 權限', async setter => {
       setter.total(1)
-      const list = await tryIgnore(s3Client.send(new ListBucketsCommand({})))
+      const list = await tryFunc(s3Client.send(new ListBucketsCommand({})))
       if (T.err(list)) {
         throw new Error('無法取得 S3 的 Bucket 列表', { cause: list })
       }
