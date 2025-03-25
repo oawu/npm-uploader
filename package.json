@@ -1,6 +1,6 @@
 {
   "name": "@oawu/uploader",
-  "version": "2.0.1",
+  "version": "3.0.0",
   "description": "☁️ 上傳無上限，不管是 S3 或 GitHub",
   "main": "index.js",
   "scripts": {
@@ -30,10 +30,8 @@
   },
   "homepage": "https://github.com/oawu/npm-uploader#readme",
   "dependencies": {
-    "@aws-sdk/client-s3": "^3.552.0",
-    "@oawu/cli-progress": "^1.0.22",
-    "@oawu/queue": "^1.0.14",
-    "@oawu/xterm": "^1.0.7",
-    "mime": "^2.5.0"
+    "@aws-sdk/client-s3": "^3.774.0",
+    "@oawu/helper": "^2.0.9",
+    "mime-types": "^2.1.35"
   }
 }

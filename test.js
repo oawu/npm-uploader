@@ -1,50 +1,208 @@
 /**
  * @author      OA Wu <oawu.tw@gmail.com>
- * @copyright   Copyright (c) 2015 - 2024, @oawu/uploader
+ * @copyright   Copyright (c) 2015 - 2025, @oawu/uploader
  * @license     http://opensource.org/licenses/MIT  MIT License
  * @link        https://www.ioa.tw/
  */
 
+const { Type: T } = require('@oawu/helper')
 const Uploader = require('./index.js')
-const destDir = __dirname + '/dist'
+const destDir = __dirname + '/Dist'
 
-const s3 = Uploader.S3({
-  bucket: '',
-  access: '',
-  secret: '',
-  region: '',
-  
-  destDir: destDir,
-  isDisplay: true,
-  
-  prefix: '',
-  ignoreNames: [],
-  ignoreExts: [],
-  ignoreDirs: []
-})
+const bucket = ''
+const access = ''
+const secret = ''
+const region = ''
 
-s3.put(e => {
-  console.error(e);
+const account = ''
+const repository = ''
+const branch = ''
+const message = ''
 
-  const s3 = Uploader.GitHub({
-    account: '',
-    repository: '',
-    branch: '',
-    message: '',
+let step = async (name, func) => {
+  process.stdout.write(name)
 
-    destDir: destDir,
-    isDisplay: true,
-    
+  const setter = {
+    total: _ => { },
+    advance: _ => { },
+  }
+
+  let result = null
+  try {
+    if (T.func(func)) {
+      result = func(setter)
+    } else if (T.asyncFunc(func)) {
+      result = await func(setter)
+    } else if (T.promise(func)) {
+      result = await func
+    }
+  } catch (e) {
+    process.stdout.write('失敗')
+    process.stdout.write('\n')
+    throw e
+  }
+
+  if (T.err(result)) {
+    process.stdout.write('失敗')
+    process.stdout.write('\n')
+  } else {
+    process.stdout.write('完成')
+    process.stdout.write('\n')
+  }
+
+  return result
+}
+
+;(async destDir => {
+  process.stdout.write('顯示 - async')
+  process.stdout.write('\n')
+
+  process.stdout.write('S3')
+  process.stdout.write('\n')
+  await Uploader.S3(destDir, {
+    bucket,
+    access,
+    secret,
+    region,
+
     prefix: '',
-    ignoreNames: [],
+
+    ignoreNames: ['.DS_Store', 'Thumbs.db', '.gitignore', '.gitkeep'],
     ignoreExts: [],
     ignoreDirs: []
+  }).execute(step)
+
+
+  process.stdout.write('\n')
+  process.stdout.write('GitHub')
+  process.stdout.write('\n')
+  await Uploader.GitHub(destDir, {
+    account,
+    repository,
+    branch,
+    message,
+
+    prefix: '',
+
+    ignoreNames: ['.DS_Store', 'Thumbs.db', '.gitignore', '.gitkeep'],
+    ignoreExts: [],
+    ignoreDirs: []
+  }).execute(step)
+
+
+  await new Promise((resolve, reject) => {
+    process.stdout.write('\n')
+    process.stdout.write('\n')
+    process.stdout.write('顯示 - callback')
+    process.stdout.write('\n')
+
+    process.stdout.write('S3')
+    process.stdout.write('\n')
+
+    Uploader.S3(destDir, {
+      bucket,
+      access,
+      secret,
+      region,
+
+      prefix: '',
+
+      ignoreNames: ['.DS_Store', 'Thumbs.db', '.gitignore', '.gitkeep'],
+      ignoreExts: [],
+      ignoreDirs: []
+    }).execute(step, error => error ? reject(error) : resolve())
+  })
+  await new Promise((resolve, reject) => {
+    process.stdout.write('\n')
+    process.stdout.write('GitHub')
+    process.stdout.write('\n')
+    Uploader.GitHub(destDir, {
+      account,
+      repository,
+      branch,
+      message,
+
+      prefix: '',
+
+      ignoreNames: ['.DS_Store', 'Thumbs.db', '.gitignore', '.gitkeep'],
+      ignoreExts: [],
+      ignoreDirs: []
+    }).execute(step, error => error ? reject(error) : resolve())
   })
 
-  s3.put(e => {
-    e ? console.error(e) : console.error('ok')
-    process.exit()
+  step = null
+  process.stdout.write('\n')
+  process.stdout.write('\n')
+  process.stdout.write('安靜 - async')
+  process.stdout.write('\n')
+
+  process.stdout.write('S3')
+  process.stdout.write('\n')
+  await Uploader.S3(destDir, {
+    bucket,
+    access,
+    secret,
+    region,
+
+    prefix: '',
+
+    ignoreNames: ['.DS_Store', 'Thumbs.db', '.gitignore', '.gitkeep'],
+    ignoreExts: [],
+    ignoreDirs: []
+  }).execute(step)
+
+  process.stdout.write('GitHub')
+  process.stdout.write('\n')
+  await Uploader.GitHub(destDir, {
+    account,
+    repository,
+    branch,
+    message,
+
+    prefix: '',
+
+    ignoreNames: ['.DS_Store', 'Thumbs.db', '.gitignore', '.gitkeep'],
+    ignoreExts: [],
+    ignoreDirs: []
+  }).execute(step)
+
+  await new Promise((resolve, reject) => {
+    process.stdout.write('\n')
+    process.stdout.write('\n')
+    process.stdout.write('安靜 - callback')
+    process.stdout.write('\n')
+
+    process.stdout.write('S3')
+    process.stdout.write('\n')
+
+    Uploader.S3(destDir, {
+      bucket,
+      access,
+      secret,
+      region,
+
+      prefix: '',
+
+      ignoreNames: ['.DS_Store', 'Thumbs.db', '.gitignore', '.gitkeep'],
+      ignoreExts: [],
+      ignoreDirs: []
+    }).execute(step, error => error ? reject(error) : resolve())
+  })
+  await new Promise((resolve, reject) => {
+    process.stdout.write('GitHub')
+    process.stdout.write('\n')
+    Uploader.GitHub(destDir, {
+      account,
+      repository,
+      branch,
+      message,
+
+      prefix: '',
+
+      ignoreNames: ['.DS_Store', 'Thumbs.db', '.gitignore', '.gitkeep'],
+      ignoreExts: [],
+      ignoreDirs: []
+    }).execute(step, error => error ? reject(error) : resolve())
   })
 
-})
-
+})(destDir).catch(console.error)
