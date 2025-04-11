@@ -56,7 +56,7 @@ S3.prototype.execute = function (_step = null, done = null) {
 
         requestHandler: new NodeHttpHandler({
           connectionTimeout: 3000,
-          socketTimeout: 10000,
+          socketTimeout: 0,
           httpAgent: new (require('http').Agent)({ maxSockets: 200 }),
           httpsAgent: new (require('https').Agent)({ maxSockets: 200 }),
         }),
